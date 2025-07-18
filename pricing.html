@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pricing – Futuristic Portal</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root{--bg:#0f0f12;--neon:#00ffe0;--glass:rgba(255,255,255,.08)}
+    body{background:var(--bg);color:#fff;font-family:system-ui;padding:40px}
+    h1{text-align:center;margin-bottom:1em}
+    .card{background:var(--glass);padding:20px;border-radius:10px;margin-bottom:20px}
+    label{display:block;margin-bottom:10px}
+    input[type=range]{width:100%}
+    .price{font-size:1.5em;margin-top:10px;color:var(--neon)}
+    .btn{background:var(--neon);color:#000;padding:.5em 1em;border:none;border-radius:20px;cursor:pointer}
+  </style>
+</head>
+<body>
+  <h1>Instant Quote</h1>
+  <div class="card">
+    <label>Minimum DA
+      <input type="range" id="da" min="30" max="90" value="50">
+      <span id="daVal">50</span>
+    </label>
+    <label>Minimum Traffic
+      <input type="range" id="traf" min="1000" max="50000" value="10000">
+      <span id="trafVal">10 000</span>
+    </label>
+    <p class="price">Price: $<span id="price">120</span></p>
+    <button class="btn" onclick="addToCart()">Add to Cart</button>
+  </div>
+
+  <script>
+    const daS=document.getElementById('da'),trafS=document.getElementById('traf');
+    const daV=document.getElementById('daVal'),trafV=document.getElementById('trafVal');
+    const priceOut=document.getElementById('price');
+    const update=()=>{
+      const da=+daS.value,traf=+trafS.value;
+      daV.textContent=da; trafV.textContent=traf.toLocaleString();
+      priceOut.textContent=Math.round((da*1.8)+(traf/400)+30);
+    };
+    [daS,trafS].forEach(s=>s.addEventListener('input',update));
+    update();
+    function addToCart(){
+      const params=new URLSearchParams({da:daS.value,traf:trafS.value,price:priceOut.textContent});
+      location.href='checkout.html?'+params;
+    }
+  </script>
+</body>
+</html>
