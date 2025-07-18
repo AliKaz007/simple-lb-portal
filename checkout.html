@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout – Futuristic Portal</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    :root{--bg:#0f0f12;--neon:#00ffe0;--glass:rgba(255,255,255,.08)}
+    body{background:var(--bg);color:#fff;font-family:system-ui;padding:40px;max-width:500px;margin:auto}
+    h1{text-align:center;margin-bottom:1em}
+    .card{background:var(--glass);padding:20px;border-radius:10px;margin-bottom:20px}
+    label{display:block;margin:.5em 0}
+    input{width:100%;padding:.5em;border:none;border-radius:4px}
+    .btn{background:var(--neon);color:#000;padding:.6em 1.2em;border:none;border-radius:20px;cursor:pointer}
+  </style>
+</head>
+<body>
+  <h1>Checkout</h1>
+  <div class="card">
+    <p><strong>Order Summary</strong></p>
+    <p id="summary"></p>
+  </div>
+  <form onsubmit="placeOrder(event)">
+    <label>Email
+      <input type="email" required>
+    </label>
+    <label>Anchor text
+      <input name="anchor" required>
+    </label>
+    <label>Target URL
+      <input name="url" required>
+    </label>
+    <button class="btn" type="submit">Place Order</button>
+  </form>
+
+  <script>
+    const params=new URLSearchParams(location.search);
+    document.getElementById('summary').textContent=
+      `DA ${params.get('da')}+, Traffic ${params.get('traf')}+ — Total $${params.get('price')}`;
+    function placeOrder(e){
+      e.preventDefault();
+      alert('Order placed! Redirecting to dashboard…');
+      location.href='dashboard.html';
+    }
+  </script>
+</body>
+</html>
