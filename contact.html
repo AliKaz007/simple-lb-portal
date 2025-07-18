@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact – Futuristic Portal</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    :root{--bg:#0f0f12;--neon:#00ffe0;--glass:rgba(255,255,255,.08)}
+    body{background:var(--bg);color:#fff;font-family:system-ui;padding:40px;max-width:500px;margin:auto}
+    h1{text-align:center;margin-bottom:1em}
+    .card{background:var(--glass);padding:20px;border-radius:10px;margin-bottom:20px}
+    label{display:block;margin:.75em 0}
+    input,textarea{width:100%;padding:.5em;border:none;border-radius:4px}
+    .btn{background:var(--neon);color:#000;padding:.6em 1.2em;border:none;border-radius:20px;cursor:pointer}
+  </style>
+</head>
+<body>
+  <h1>Get in Touch</h1>
+  <form onsubmit="sendMsg(event)">
+    <label>Name
+      <input name="name" required>
+    </label>
+    <label>Email
+      <input type="email" name="email" required>
+    </label>
+    <label>Message
+      <textarea name="msg" rows="4" required></textarea>
+    </label>
+    <button class="btn" type="submit">Send Message</button>
+  </form>
+
+  <script>
+    function sendMsg(e){
+      e.preventDefault();
+      alert('Thanks! We’ll reply within 1 hour.');
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>
