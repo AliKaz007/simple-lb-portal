@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: link-portal
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: SKIP_PAYMENT
+        value: true
