@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard – Futuristic Portal</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    :root{--bg:#0f0f12;--neon:#00ffe0;--glass:rgba(255,255,255,.08)}
+    body{background:var(--bg);color:#fff;font-family:system-ui;padding:40px}
+    h1{text-align:center;margin-bottom:1em}
+    .card{background:var(--glass);padding:20px;border-radius:10px;margin-bottom:15px}
+    .progress{background:#333;height:8px;border-radius:4px;overflow:hidden}
+    .progress div{background:var(--neon);height:100%;width:0%;transition:width .6s}
+  </style>
+</head>
+<body>
+  <h1>Order Tracker</h1>
+  <div id="orders"></div>
+
+  <script>
+    const mock=[{id:'#A1B2',status:3,total:4},{id:'#C3D4',status:1,total:4}];
+    const orders=document.getElementById('orders');
+    mock.forEach(o=>{
+      const card=document.createElement('div');
+      card.className='card';
+      card.innerHTML=`
+        <strong>${o.id}</strong><br>
+        <div class="progress"><div style="width:${(o.status/o.total)*100}%"></div></div>
+        Step ${o.status}/${o.total}: ${['Placed','Pitch Sent','Draft Live','Delivered'][o.status-1]}
+      `;
+      orders.appendChild(card);
+    });
+  </script>
+</body>
+</html>
