@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Link-Building Portal</title>
+  <style>
+    body{font-family:Arial;margin:40px;background:#f5f5f5}
+    .card{background:#fff;padding:20px;border-radius:8px;margin-bottom:15px}
+    .btn{background:#007bff;color:#fff;padding:8px 16px;border:none;border-radius:4px;cursor:pointer}
+  </style>
+</head>
+<body>
+  <h1>Order Links by DA & Traffic</h1>
+  <div id="list"></div>
+
+  <script>
+    fetch('/inventory')
+      .then(r=>r.json())
+      .then(data=>{
+        const list=document.getElementById('list');
+        data.forEach(s=>{
+          const d=document.createElement('div');
+          d.className='card';
+          d.innerHTML=`
+            <strong>${s.domain}</strong> – DA ${s.da}, Traffic ${s.traffic}, $${s.price}<br>
+            <form action="/order" method="post" style="margin-top:10px">
+              <input type="hidden" name="domain" value="${s.domain}">
+              Anchor: <input name="anchor" required>
+              URL: <input name="url" required>
+              <button class="btn">Order</button>
+            </form>`;
+          list.appendChild(d);
+        });
+      });
+  </script>
+</body>
+</html>
